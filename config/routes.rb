@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   resources :articles;
             :home
 
-  resource :contacts, only: [:new, :create]
+  resource :contacts, only: [:new, :create], path_names: { :new => ''} #чтобы вид new выводился по ссылке /contacts, а не /contacts/new
 end
