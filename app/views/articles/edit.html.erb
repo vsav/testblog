@@ -1,8 +1,8 @@
 <div class="container">
   <br>
-  <h3>New Article</h3>
+  <h3>Edit Article</h3>
 
-  <%= form_for :article, url: article_path do |f| %>
+  <%= form_for :article, url: article_path(@article), method: :patch  do |f| %>
     <% if @article && @article.errors.any? %>
       <p class="lead">
       <ul>
