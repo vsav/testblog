@@ -1,15 +1,27 @@
-<h1>New Article</h1>
+<div class="container">
+  <br>
+  <h3>New Article</h3>
 
-<%= form_for :article, url: '/articles' do |f| %>
-  <p>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :text %>
-    <%= f.text_area :text %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+  <%= form_for :article, url: '/articles' do |f| %>
+    <% if @article && @article.errors.any? %>
+      <p class="lead">
+      <ul>
+        <% @article.errors.full_messages.each do |msg|%>
+          <li><%=msg%></li>
+        <% end %>
+      </ul>
+      </p>
+    <% end %>
+    <p class="lead">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </p>
+    <p class="lead">
+      <%= f.label :text %>
+      <%= f.text_area :text %>
+    </p>
+    <p class="lead">
+      <%= f.submit %>
+    </p>
+  <% end %>
+</div>

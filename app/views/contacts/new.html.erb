@@ -1,26 +1,28 @@
-<h1>New Message</h1>
+<div class="container">
+  <br>
+  <h3>New Message</h3>
 
-<%= form_for :contact, url: contacts_path do |f| %>
-
-  <% if @contact && @contact.errors.any? %>
-    <p>
+  <%= form_for :contact, url: contacts_path do |f| %>
+    <% if @contact && @contact.errors.any? %>
+      <p class="lead">
       <ul>
         <% @contact.errors.full_messages.each do |msg|%>
           <li><%=msg%></li>
         <% end %>
       </ul>
+      </p>
+    <% end %>
+
+    <p class="lead">
+      <%= f.label :email %> <br>
+      <%= f.text_field :email %>
+    </p>
+    <p class="lead">
+      <%= f.label :message %> <br>
+      <%= f.text_area :message %>
+    </pclass>
+    <p class="lead">
+      <%= f.submit %>
     </p>
   <% end %>
-
-  <p>
-    <%= f.label :email %> <br>
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :message %> <br>
-    <%= f.text_area :message %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+</div>
