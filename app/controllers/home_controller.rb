@@ -8,7 +8,7 @@ class HomeController < ApplicationController
   end
 
   def index
-    @articles = Article.all
+    @article=Article.all
   end
 
 end

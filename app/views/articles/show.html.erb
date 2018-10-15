@@ -1,12 +1,10 @@
 <div class="container">
   <br>
   <blockquote class="blockquote">
-    <%@articles.each do |article|%>
       <p>
-        <p class="mb-0"><%=article.text%></p>
-        <footer class="blockquote-footer"><cite title="Source Title"><%=article.title%></cite></footer>
+        <p class="mb-0"><%=@article.text%></p>
+        <footer class="blockquote-footer"><cite title="Source Title"><%=@article.title%></cite></footer>
       </p>
-    <% end %>
   </blockquote>
   <br>
   <a href="/articles/new" class="btn btn-primary">Create Article</a>
