@@ -2,7 +2,7 @@
   <br>
   <h3>New Article</h3>
 
-  <%= form_for :article, url: article_path do |f| %>
+  <%= form_for :article, url: articles_path do |f| %>
     <% if @article && @article.errors.any? %>
       <p class="lead">
       <ul>
@@ -13,11 +13,11 @@
       </p>
     <% end %>
     <p class="lead">
-      <%= f.label :title %>
+      <%= f.label :title %> <br>
       <%= f.text_field :title %>
     </p>
     <p class="lead">
-      <%= f.label :text %>
+      <%= f.label :text %> <br>
       <%= f.text_area :text %>
     </p>
     <p class="lead">
