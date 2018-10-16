@@ -8,5 +8,38 @@
   </blockquote>
   <br>
   <a href="/articles/new" class="btn btn-primary">Create Article</a>
+  <br>
+  <hr>
+
+  <%@article.comments.each do |comment|%>
+  <br>
+    <blockquote class="blockquote">
+      <p>
+      <p class="mb-0"><%=comment.body%></p>
+      <footer class="blockquote-footer"><cite title="Source Title"><%=comment.author%></cite></footer>
+      </p>
+    </blockquote>
+    <br>
+    <hr>
+  <% end %>
+
+
+
+  <%= form_for ([@article, @article.comments.build]) do |f| %>
+
+    <p class="lead">
+      <%= f.label :author %> <br>
+      <%= f.text_field :author %>
+    </p>
+    <p class="lead">
+      <%= f.label :body %> <br>
+      <%= f.text_area :body %>
+    </p>
+    <p class="lead">
+      <%= f.submit %>
+    </p>
+
+  <% end %>
+
 
 </div>
