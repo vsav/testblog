@@ -1,7 +1,8 @@
 class ArticlesController < ApplicationController
 
-  before_action :authenticate_user!
-
+  # before_action :authenticate_user!
+  # skip_before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:edit, :destroy, :new, :create]
 
   def new
 
