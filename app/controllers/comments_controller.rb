@@ -23,15 +23,20 @@ class CommentsController < ApplicationController
   def edit
     @article = Article.find(params[:article_id])
     @comment = Comment.find(params[:id])
-
-
+    if @comment.author == current_user.username
+      render action: 'edit'
+    else
+      @message = 'You do not have permission to do that'
+      redirect_to article_path(@article), alert: @message
+    end
   end
 
   def update
       @article = Article.find(params[:article_id])
       @comment = Comment.find(params[:id])
       if @comment.update(comment_params)
-        redirect_to article_path(@article)
+        @message = 'Comment updated'
+        redirect_to article_path(@article), notice: @message
       else
         render action: 'edit'
       end
@@ -40,9 +45,15 @@ class CommentsController < ApplicationController
   def destroy
      @article = Article.find(params[:article_id])
      @comment = Comment.find(params[:id])
-     @comment.destroy
-
-     redirect_to article_path(@article)
+     if @comment.author == current_user.username
+       @comment.destroy
+       @message = 'Comment deleted'
+       @comment.destroy
+       redirect_to article_path(@article), notice: @message
+     else
+       @message = 'You do not have permission to do that'
+       redirect_to article_path(@article), alert: @message
+     end
   end
 
 

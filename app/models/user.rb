@@ -3,6 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :articles
-  has_many :comments
+  has_many :articles, :class_name => 'User', :foreign_key => 'username'
+  has_many :comments, :class_name => 'User', :foreign_key => 'username'
 end
