@@ -17,7 +17,12 @@ class CommentsController < ApplicationController
   def show
     @article = Article.find(params[:article_id])
     @comment = Comment.find(params[:id])
-
+    if @comment.author == current_user.username
+      render action: 'edit'
+    else
+      @message = 'You do not have permission to do that'
+      redirect_to article_path(@article), alert: @message
+    end
   end
 
   def edit
@@ -32,8 +37,8 @@ class CommentsController < ApplicationController
   end
 
   def update
-      @article = Article.find(params[:article_id])
-      @comment = Comment.find(params[:id])
+    @article = Article.find(params[:article_id])
+    @comment = Comment.find(params[:id])
       if @comment.update(comment_params)
         @message = 'Comment updated'
         redirect_to article_path(@article), notice: @message
