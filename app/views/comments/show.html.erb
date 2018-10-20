@@ -1,0 +1,12 @@
+
+<%= form_for ([@article, @comment]) do |f| %>
+
+  <p class="lead">
+    <%= f.label :body, 'Your Comment:' %> <br>
+    <%= f.text_area :body, :rows => '5', :cols => '50' %>
+  </p>
+  <p class="lead">
+    <%= f.submit %>
+  </p>
+
+<% end %>

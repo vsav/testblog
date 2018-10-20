@@ -3,7 +3,7 @@
   <blockquote class="blockquote">
       <p>
         <p class="mb-0"><%=@article.text%></p>
-        <footer class="blockquote-footer"><cite title="Source Title"><%=@article.title%></cite></footer>
+        <footer class="blockquote-footer"><cite title="Source Title">Posted by: <strong><%=@article.title%></strong> at: <strong><%=@article.created_at%></strong></cite></footer>
       </p>
   </blockquote>
   <br>
@@ -12,31 +12,35 @@
   <hr>
 
   <%@article.comments.each do |comment|%>
-  <br>
-    <blockquote class="blockquote">
-      <p>
-      <p class="mb-0"><%=comment.body%></p>
-      <footer class="blockquote-footer"><cite title="Source Title"><%=comment.author%></cite></footer>
+    <% unless comment.new_record? %>
+       <br>
+      <blockquote class="blockquote">
+        <p>
+        <p class="mb-0"><%=comment.body%></p>
+        <footer class="blockquote-footer"><cite title="Source Title">Posted by: <strong><%=comment.author%></strong> at: <strong><%=comment.created_at%></strong></cite></footer>
+        </p>
+      </blockquote>
+      <br>
+      <p class="font-weight-light">
+
+        <%= link_to 'Show', article_comment_path(@article, comment) %> |
+        <%= link_to 'Edit', edit_article_comment_path(@article, comment) %> |
+        <%= link_to 'Delete', article_comment_path(@article, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+
       </p>
-    </blockquote>
-    <br>
-    <hr>
-  <% end %>
+      <hr>
+    <% end %>
+  <%end%>
 
 
+  <%= form_for ([@article, @comment]) do |f| %>
 
-  <%= form_for ([@article, @article.comments.build]) do |f| %>
-
-<!--    <p class="lead">
-      <%#= f.label :author %> <br>
-      <%#= f.text_field :author %>
-    </p>-->
     <p class="lead">
-      <%= f.label :body %> <br>
-      <%= f.text_area :body %>
+      <%= f.label :body, 'Your Comment:' %> <br>
+      <%= f.text_area :body, :rows => '5', :cols => '50'  %>
     </p>
     <p class="lead">
-      <%= f.submit %>
+      <%= f.submit 'Yarr!', :class => 'btn btn-primary' %>
     </p>
 
   <% end %>

@@ -1,7 +1,4 @@
 <div class="container">
-  <br>
-  <h3>Edit Article</h3>
-
   <%= form_for :article, url: article_path(@article), method: :patch  do |f| %>
     <% if @article && @article.errors.any? %>
       <p class="lead">
@@ -12,16 +9,13 @@
       </ul>
       </p>
     <% end %>
-<!--    <p class="lead">
-      <%#= f.label :title %> <br>
-      <%#= f.text_field :title %>
-    </p>-->
+
     <p class="lead">
-      <%= f.label :text %> <br>
-      <%= f.text_area :text %>
+      <%= f.label :text, 'Edit your article:'%> <br>
+      <%= f.text_area :text, :rows => '5', :cols => '50'%>
     </p>
     <p class="lead">
-      <%= f.submit %>
+      <%= f.submit 'Yarr!', :class => 'btn btn-primary' %>
     </p>
   <% end %>
 </div>

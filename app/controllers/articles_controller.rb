@@ -20,10 +20,12 @@ class ArticlesController < ApplicationController
 
   def index
     @articles=Article.all
+    # @article = Article.find(params[:id])
   end
 
   def show
     @article = Article.find(params[:id])
+    @comment = @article.comments.build
   end
 
   def edit
@@ -43,7 +45,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @article.destroy
 
-    redirect_to articles_path
+    redirect_to articles_path(@article)
   end
 
 

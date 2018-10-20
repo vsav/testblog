@@ -1,7 +1,5 @@
 <div class="container">
   <br>
-  <h3>New Message</h3>
-
   <%= form_for :contact, url: contacts_path do |f| %>
     <% if @contact && @contact.errors.any? %>
       <p class="lead">
@@ -19,10 +17,10 @@
     </p>
     <p class="lead">
       <%= f.label :message %> <br>
-      <%= f.text_area :message %>
+      <%= f.text_area :message, :rows => '5', :cols => '50' %>
     </pclass>
     <p class="lead">
-      <%= f.submit %>
+      <%= f.submit 'Yarr!', :class => 'btn btn-primary' %>
     </p>
   <% end %>
 </div>
