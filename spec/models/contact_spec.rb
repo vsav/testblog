@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe 'aaa' do
-  it 'does something' do
-    
-  end
+describe Contact do
+  it {should validate_presence_of :email}
+  it {should validate_presence_of :message}
 end
