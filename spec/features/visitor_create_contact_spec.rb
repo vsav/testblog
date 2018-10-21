@@ -11,7 +11,7 @@ feature 'Contact Creation' do
 
     fill_in :contact_email, :with => 'example@test.com'
     fill_in :contact_message, :with => 'Hello!'
-    click_button :Yarr!
+    click_button 'Yarr!'
 
     expect(page).to have_content 'Thanks!'
   end
