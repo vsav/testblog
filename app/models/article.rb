@@ -9,5 +9,9 @@ class Article < ApplicationRecord
     comments.last
   end
 
+  def subject
+    title
+  end
+
 end
 
